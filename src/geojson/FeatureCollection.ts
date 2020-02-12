@@ -1,6 +1,6 @@
 import { Feature } from "./Feature";
 
-export interface FeatureCollection {
+export class FeatureCollection {
   bbox?: number[];
   features: Feature[];
   type: "FeatureCollection";

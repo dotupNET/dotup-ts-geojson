@@ -1,6 +1,6 @@
 {
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "version": "1.0.1",
+  "name": "dotup-ts-geojson",
   "scripts": {
     "postpublish": "git tag -a v%npm_package_version% -m \"Release v%npm_package_version%\" && git push origin --tags",
     "commit-release": "git commit -a -m \"Release v%npm_package_version%\" && git push && git tag -a v%npm_package_version% -m \"Release v%npm_package_version%\" && git push origin --tags",
@@ -48,8 +48,8 @@
     "url": "https://github.com/dotupNET/dotup-ts-geojson/issues"
   },
   "homepage": "https://github.com/dotupNET/dotup-ts-geojson#readme",
-  "version": "1.0.0",
-  "name": "dotup-ts-geojson",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "author": {
     "name": "Peter Ullrich",
     "email": "dotup.software@gmail.com"

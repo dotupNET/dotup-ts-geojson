@@ -1,5 +1,5 @@
 
-export interface GpsDate {
+export class GpsDate {
   GPSAltitude?: number;
   GPSAltitudeRef?: number;
   GPSDateStamp?: string;
