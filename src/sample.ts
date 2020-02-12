@@ -1,13 +1,27 @@
-import { AwesomeLibrary } from './AwesomeLibrary';
+import { GeoPoint } from "./geojson/GeoPoint";
+import { GeoMultiPoint } from "./geojson/GeoMultiPoint";
 
 export class Sample {
 
   async run(): Promise<void> {
-    console.log('Here we are!');
-  }
 
-  runSomethingElse(): void {
-    console.log('Here we are again!');
+    const point: GeoPoint = {
+      type: "Point",
+      coordinates: [1, 2]
+    }
+
+    const p2 = new GeoPoint(1, 3);
+
+    const mp: GeoMultiPoint = {
+      type: "MultiPoint",
+      coordinates: [
+        [1, 2],
+        [3, 4],
+        [5, 6]
+      ]
+    }
+
+
   }
 
 }

@@ -6,6 +6,7 @@ secrets/
 src/
 dist/test/
 dist/spec/
+dist/samples
 dist/sample.js
 spec/
 docs/

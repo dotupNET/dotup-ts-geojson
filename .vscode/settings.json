@@ -1,12 +1,35 @@
+// Place your settings in this file to overwrite default and user settings.
 {
-  "typescript.tsdk": "node_modules\\typescript\\lib",
-  "javascript.preferences.quoteStyle": "single",
-  "typescript.preferences.quoteStyle": "single",
-  "mocha.options": {
-    "compilers": "ts-node/register"
+  "typescript.preferences.quoteStyle": "double",
+  "javascript.preferences.quoteStyle": "double",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
   },
-  "mocha.requires": [
-    "ts-node/register"
+  "eslint.validate": [
+    "javascript",
+    "typescript"
   ],
-  "mocha.files.glob": "test/**/*.test.ts"
+  "editor.formatOnSave": true,
+  "[javascript]": {
+    "editor.formatOnSave": false
+  },
+  "[typescript]": {
+    "editor.formatOnSave": false
+  },
+  "[markdown]": {
+    "editor.formatOnSave": false
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/coverage": true
+  },
+  "typescript.referencesCodeLens.enabled": true,
+  "appService.zipIgnorePattern": [
+    ".vscode{,/**}"
+  ],
+  "appService.deploySubpath": ""
 }
