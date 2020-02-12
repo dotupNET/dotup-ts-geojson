@@ -8,6 +8,11 @@
       "task": "project-build",
       "group": "build",
       "problemMatcher": []
+    },
+    {
+      "type": "gulp",
+      "task": "project-publish",
+      "problemMatcher": []
     }
   ]
 }
