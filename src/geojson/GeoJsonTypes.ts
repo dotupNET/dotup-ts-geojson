@@ -4,12 +4,6 @@
  * https://tools.ietf.org/html/rfc7946
  */
 
-export interface GetCoordinate {
-  lon: number;
-  lat: number;
-  alt?: number
-}
-
 export declare type GeoGeometryType = "Point" | "MultiPoint" | "LineString" | "MultiLineString" | "Polygon" | "MultiPolygon" | "GeometryCollection";
 
 export declare type GeoJsonType = "Feature" | "FeatureCollection" | GeoGeometryType;
