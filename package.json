@@ -1,44 +1,59 @@
 {
-  "version": "1.0.1",
-  "name": "dotup-ts-geojson",
+  "version": "1.1.0",
+  "name": "@dotup/dotup-ts-geojson",
   "scripts": {
-    "postpublish": "git tag -a v%npm_package_version% -m \"Release v%npm_package_version%\" && git push origin --tags",
-    "commit-release": "git commit -a -m \"Release v%npm_package_version%\" && git push && git tag -a v%npm_package_version% -m \"Release v%npm_package_version%\" && git push origin --tags",
-    "build": "tsc",
+    "release": "npm run build-ts && npm run test && git push && npm run gh-pages && npm publish",
+    "release-esnext": "npm run build-esnext && npm run test && git push && npm run gh-pages && npm publish",
+    "release-r": "npm run build && npm run test && git push && npm run gh-pages && npm publish",
+    "postversion": "git push && git push --tags",
+    "clean-dist": "rimraf dist",
+    "clean-node_modules": "rimraf node_modules",
+    "build-ts": "npm run clean-dist && tsc -p tsconfig.build.json",
+    "build-test": "npm run clean-dist && tsc -p tsconfig.json",
+    "build-esnext": "npm run clean-dist && tsc -p tsconfig.esnext.json",
+    "build-r": "npm run clean-dist && rollup -c",
+    "build": "npm run lint && npm run build-r && npm run copy-static-assets",
+    "test": "mocha",
+    "coverage": "npm run DOESNOTWORK && npm run build-test && nyc mocha",
+    "test-jest": "npm run build-test && jest --forceExit --verbose",
+    "coverage-jest": "npm run build-test && jest --forceExit --coverage --verbose",
+    "coveralls-jest": "npm run coverage-jest && cat ./tests/coverage/lcov.info | coveralls",
+    "lint": "tsc -p tsconfig.json --noEmit && eslint \"**/*.{ts,tsx}\" --quiet --fix",
     "docs": "typedoc --mode file --out docs src --exclude \"**/*+(index|.spec|.test|.e2e).ts\"",
     "gh-pages": "rimraf docs && npm run docs && gh-pages -d docs",
-    "npm-publish": "npm publish",
+    "publish-npm": "npm publish",
+    "publish-npm-r": "npm run build-r && npm publish",
     "start": "npm run serve",
     "serve": "node dist/server.js",
-    "watch-node": "nodemon dist/server.js",
+    "watch-node": "nodemon dist/sample.js",
     "watch": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
-    "test": "jest --forceExit --coverage --verbose",
     "watch-test": "npm run test -- --watchAll",
-    "build-ts": "tsc",
     "watch-ts": "tsc -w",
-    "lint": "tsc --noEmit && eslint \"**/*.{js,ts}\" --quiet --fix",
     "copy-static-assets": "ts-node copyStaticAssets.ts",
     "debug": "npm run build && npm run watch-debug",
     "serve-debug": "nodemon --inspect dist/server.js",
     "watch-debug": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\"",
-    "watch-debug-nodemon": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\""
+    "watch-debug-nodemon": "concurrently -k -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run serve-debug\"",
+    "postpublish": "git tag -a v%npm_package_version% -m \"Release v%npm_package_version%\" && git push origin --tags",
+    "commit-release": "git commit -a -m \"Release v%npm_package_version%\" && git push && git tag -a v%npm_package_version% -m \"Release v%npm_package_version%\" && git push origin --tags",
+    "npm-publish": "npm publish"
   },
   "dependencies": {
-    "dotup-ts-types": "0.2.0"
+    "@dotup/dotup-ts-types": "workspace:0.4.1"
   },
   "devDependencies": {
-    "dotup-ts-git-wrapper": "^1.0.0",
-    "gulp": "^4.0.2",
-    "gulp-typescript": "^6.0.0-alpha.1",
-    "gulp-sourcemaps": "^2.6.5",
-    "gulp-gh-pages": "^0.5.4",
-    "gulp-typedoc": "^2.2.4",
-    "del": "^5.1.0",
     "cross-spawn": "^7.0.1",
+    "del": "^5.1.0",
+    "dotup-ts-git-wrapper": "^1.0.0",
+    "gh-pages": "^2.2.0",
+    "gulp": "^4.0.2",
+    "gulp-gh-pages": "^0.5.4",
+    "gulp-sourcemaps": "^2.6.5",
+    "gulp-typedoc": "^2.2.4",
+    "gulp-typescript": "^6.0.0-alpha.1",
     "ts-node": "^8.6.2",
-    "typedoc": "^0.16.9",
-    "typescript": "^3.7.5",
-    "gh-pages": "^2.2.0"
+    "typedoc": "^0.16.11",
+    "typescript": "^3.8.3"
   },
   "repository": {
     "type": "git",
@@ -53,5 +68,9 @@
   "author": {
     "name": "Peter Ullrich",
     "email": "dotup.software@gmail.com"
+  },
+  "license": "AGPL-3.0-only",
+  "publishConfig": {
+    "access": "public"
   }
 }

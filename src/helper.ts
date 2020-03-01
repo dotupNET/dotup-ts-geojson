@@ -1,5 +1,5 @@
 import { GeoPoint } from "./geojson/GeoPoint";
-import { PropertyNamesOnly } from "dotup-ts-types";
+import { PropertyNamesOnly } from "@dotup/dotup-ts-types";
 import { Geometry } from "./geojson/Geometry";
 import { GeoPolygon } from "./geojson/GeoPolygon";
 import { GeoMultiPolygon } from "./geojson/GeoMultiPolygon";
